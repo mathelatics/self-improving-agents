@@ -1,0 +1,84 @@
+{
+  "summary": {
+    "config": {
+      "limit": 2,
+      "n_samples": 8,
+      "temperature": 0.7,
+      "threshold": -1.5,
+      "max_tokens": 256,
+      "model": "meta/llama-3.2-11b-vision-instruct",
+      "out": "/workspace/hw1/../results",
+      "save_responses": false
+    },
+    "wall_time_s": 44.7,
+    "static": {
+      "strategy": "static_best_of_n",
+      "n_prompts": 2,
+      "accuracy": 0.5,
+      "total_tokens": 2883,
+      "avg_tokens_per_prompt": 1441.5,
+      "total_generations": 16
+    },
+    "compute_optimal": {
+      "strategy": "compute_optimal",
+      "n_prompts": 2,
+      "accuracy": 0.5,
+      "total_tokens": 364,
+      "avg_tokens_per_prompt": 182.0,
+      "total_generations": 2,
+      "pct_routed_easy": 1.0,
+      "accuracy_on_confident": 0.5
+    },
+    "token_savings_pct": 87.4
+  },
+  "records": [
+    {
+      "id": "gsm8k-1309",
+      "strategy": "static_best_of_n",
+      "gold": "2280",
+      "selected": "2180",
+      "correct": false,
+      "tokens": 1176,
+      "generations": 8,
+      "votes": 8,
+      "valid_answers": 8
+    },
+    {
+      "id": "gsm8k-228",
+      "strategy": "static_best_of_n",
+      "gold": "1",
+      "selected": "1",
+      "correct": true,
+      "tokens": 1707,
+      "generations": 8,
+      "votes": 7,
+      "valid_answers": 8
+    },
+    {
+      "id": "gsm8k-1309",
+      "strategy": "compute_optimal",
+      "gold": "2280",
+      "selected": "2180",
+      "correct": false,
+      "tokens": 184,
+      "avg_logprob": -0.0969,
+      "confident": true,
+      "generations": 1,
+      "votes": 1,
+      "valid_answers": 1
+    },
+    {
+      "id": "gsm8k-228",
+      "strategy": "compute_optimal",
+      "gold": "1",
+      "selected": "1",
+      "correct": true,
+      "tokens": 180,
+      "avg_logprob": -0.1523,
+      "confident": true,
+      "generations": 1,
+      "votes": 1,
+      "valid_answers": 1
+    }
+  ]
+}
