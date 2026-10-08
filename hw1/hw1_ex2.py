@@ -2,33 +2,29 @@
 
 Design (per spec: no exec/eval on the host):
   * LLM code + hidden unit tests are written to a temp ``.py`` file and run in
-    a *child process* via ``subprocess.run`` with a hard timeout.
+    a *child process* via ``subprocess.run`` with a hard wall-clock timeout.
   * Defence-in-depth inside the child:
       - startup resource caps (CPU time / address space / file size) via
         ``resource.setrlimit`` -> infinite loops die from SIGXCPU, memory
         bombs get MemoryError instead of nuking the box;
-      - an AST allow-list gate: imports outside the whitelist and dunder
-        attribute access are rejected *before* the first statement runs
-        (blocks os/subprocess/socket/__import__/``__globals__`` escapes);
-      - cwd = temp dir, empty environment, stdout/stderr captured, never eval'd.
+      - an AST allow-list gate: imports outside the whitelist, dangerous
+        introspection dunders (__globals__, __subclasses__, ...) and blocked
+        builtins (__import__/exit/quit) are rejected *before* any user
+        statement runs;
+      - cwd = temp dir, minimal environment, stdout/stderr captured.
   * Returns {"passed": bool, "error": str|None, ...} exactly as specified.
 
-Colab note: works out of the box (Linux sandbox). For stronger isolation use
-the optional Docker backend (``backend="docker"``) — same interface.
+Colab note: works out of the box (Linux). For stronger isolation wrap
+``_run`` in ``docker run --rm --network none --memory 256m`` — same interface.
 """
 
 from __future__ import annotations
 
-import ast
 import os
 import subprocess
 import sys
 import tempfile
 import textwrap
-
-_DANGEROUS_DUNDERS = {"__globals__", "__class__", "__bases__", "__subclasses__",
-                     "__mro__", "__getattribute__", "__reduce__", "__reduce_ex__",
-                     "__loader__", "__dict__", "__slots__"}
 
 _ALLOWED_IMPORTS = {
     "math", "re", "json", "itertools", "functools", "collections",
@@ -36,11 +32,8 @@ _ALLOWED_IMPORTS = {
     "datetime", "time", "typing", "operator", "decimal", "fractions",
 }
 
-# Child-process bootstrap: resource caps + AST gate, then exec the candidate.
-# The candidate source is read from argv[1] via os.read on a raw fd (the only
-# allowed "open" inside the guard).  After the gate passes, __builtins__ is
-# restored so user code can use open()/eval() normally — the sandbox boundary
-# is the subprocess itself (timeout + rlimits + isolated cwd/env).
+# Child-process bootstrap. The candidate source arrives over an inherited pipe
+# fd (never argv), is checked by the AST gate, then exec'd in a fresh namespace.
 _PRELUDE = """\
 import ast as _ast, sys as _sys, os as _os
 try:
@@ -53,22 +46,24 @@ try:
 except ImportError:
     pass
 
+_DANGEROUS_DUNDERS = {"__globals__", "__class__", "__bases__", "__subclasses__",
+                      "__mro__", "__getattribute__", "__reduce__",
+                      "__reduce_ex__", "__loader__", "__builtins__"}
+
 class _Guard(_ast.NodeVisitor):
     ALLOWED = set(%(allowed)r)
     def visit_Import(self, node):
         for a in node.names:
-            root = a.name.split('.')[0]
-            if root not in self.ALLOWED:
+            if a.name.split('.')[0] not in self.ALLOWED:
                 raise SystemExit('SANDBOX_VIOLATION: import blocked: ' + a.name)
     def visit_ImportFrom(self, node):
-        root = (node.module or '').split('.')[0]
-        if root not in self.ALLOWED:
+        if (node.module or '').split('.')[0] not in self.ALLOWED:
             raise SystemExit('SANDBOX_VIOLATION: import blocked: ' + (node.module or '?'))
     def visit_Attribute(self, node):
-        # Block introspection escapes (obj.__globals__['__builtins__'] etc.)
-        # but allow ordinary dunders (__name__, __init__, __main__ ...).
+        # Block introspection escapes but allow ordinary dunders (__name__,
+        # __init__, __main__ ...) that normal code needs.
         if isinstance(node.attr, str) and node.attr in _DANGEROUS_DUNDERS:
-            raise SystemExit('SANDBOX_VIOLATION: dunder attribute access: ' + node.attr)
+            raise SystemExit('SANDBOX_VIOLATION: dunder access: ' + node.attr)
         self.generic_visit(node)
     def visit_Call(self, node):
         f = node.func
@@ -104,7 +99,7 @@ class CodeVerifier:
 
         Returns: {"passed": bool, "error": str or None, "stdout", "stderr"}
         """
-        full_script = (f"{generated_code}\n\n{textwrap.dedent(test_cases)}\n")
+        full_script = f"{generated_code}\n\n{textwrap.dedent(test_cases)}\n"
         prelude = _PRELUDE % {"allowed": sorted(self.allowed_imports)}
         with tempfile.TemporaryDirectory(prefix="verifier_") as td:
             boot = os.path.join(td, "_bootstrap.py")
@@ -115,15 +110,16 @@ class CodeVerifier:
     def _run(self, boot: str, cwd: str, source: str) -> dict:
         env = {"PATH": "/usr/bin:/bin",
                "PYTHONHASHSEED": "0", "PYTHONDONTWRITEBYTECODE": "1"}
-        # Candidate source is handed to the child over an inherited pipe fd;
-        # it never touches the command line and is AST-gated before exec.
         r_fd, w_fd = os.pipe()
-        os.write(w_fd, source.encode("utf-8"))
-        os.close(w_fd)
+        try:
+            os.write(w_fd, source.encode("utf-8"))
+        finally:
+            os.close(w_fd)
         try:
             proc = subprocess.run([self.python_bin, "-B", boot, str(r_fd)],
                                   capture_output=True, text=True,
                                   timeout=self.timeout, cwd=cwd, env=env,
+                                  stdin=subprocess.DEVNULL,
                                   pass_fds=(r_fd,))
         except subprocess.TimeoutExpired:
             return {"passed": False, "error": f"TIMEOUT after {self.timeout}s",
@@ -147,9 +143,13 @@ class CodeVerifier:
     # ------------------------------------------------------- HumanEval style
     def verify_completion(self, prompt: str, completion: str,
                           test: str, entry_point: str) -> dict:
-        """HumanEval convention: function header + body + check(entry_point)."""
-        script = prompt.rstrip() + "\n" + completion + "\n\n" + \
-                 test + f"\ncheck('{entry_point}')\n"
+        """HumanEval convention: header + completion body + check(entry_point).
+
+        NOTE: HumanEval's ``check`` takes the *function object*, so we call
+        ``check(<entry_point>)`` (identifier), not ``check('<name>')`` (str).
+        """
+        script = (prompt.rstrip() + "\n" + completion + "\n\n" +
+                  test + f"\ncheck({entry_point})\n")
         return self.verify("", script)
 
     # ------------------------------------------------------------ self-tests
@@ -171,11 +171,23 @@ class CodeVerifier:
                 "def f():\n    return (lambda: 0).__globals__",
                 "assert f()"),
             "syntax_error": ("def broken(:", "assert broken()"),
+            "humaneval_style": (
+                "",
+                "def has_close_elements(numbers, threshold):\n"
+                "    for i in range(len(numbers)):\n"
+                "        for j in range(i+1, len(numbers)):\n"
+                "            if abs(numbers[i]-numbers[j]) < threshold:\n"
+                "                return True\n"
+                "    return False\n\n"
+                "def check(candidate):\n"
+                "    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True\n"
+                "    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.7) == False\n"
+                "check(has_close_elements)"),
         }
-        results = {}
         expect = {"pass_add": True, "fail_wrong": False, "fail_timeout": False,
                   "blocked_import": False, "blocked_escape": False,
-                  "syntax_error": False}
+                  "syntax_error": False, "humaneval_style": True}
+        results = {}
         for name, (code, tests) in cases.items():
             r = self.verify(code, tests)
             results[name] = {"passed": r["passed"],
