@@ -1,0 +1,27 @@
+{
+  "task_id": "HumanEval/8",
+  "task_type": "code",
+  "prompt": "from typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n",
+  "meta": {},
+  "steps": [
+    {
+      "kind": "generate",
+      "ts": 1791495670.167,
+      "tokens": 54,
+      "best_text": "def sum_product(numbers: List[int]) -> Tuple[int, int]:\n    sum_result = 0\n    product_result = 1\n    for num in numbers:\n        sum_result += num\n        product_result *= num\n    return sum_result, product_result",
+      "request_prompt": "from typing import List, Tuple\n\n\ndef sum_product(numbers: List[int]) -> Tuple[int, int]:\n    \"\"\" For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\n    Empty sum should be equal to 0 and empty product should be equal to 1.\n    >>> sum_product([])\n    (0, 1)\n    >>> sum_product([1, 2, 3, 4])\n    (10, 24)\n    \"\"\"\n"
+    },
+    {
+      "kind": "verify",
+      "ts": 1791495670.204,
+      "passed": true,
+      "error": ""
+    },
+    {
+      "kind": "accept",
+      "ts": 1791495670.204,
+      "loops": 0,
+      "tokens": 54
+    }
+  ]
+}

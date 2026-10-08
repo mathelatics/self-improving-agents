@@ -1,0 +1,27 @@
+{
+  "task_id": "HumanEval/0",
+  "task_type": "code",
+  "prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n",
+  "meta": {},
+  "steps": [
+    {
+      "kind": "generate",
+      "ts": 1791495612.2,
+      "tokens": 56,
+      "best_text": "def has_close_elements(numbers: list[float], threshold: float) -> bool:\n    numbers.sort()\n    for i in range(len(numbers) - 1):\n        if abs(numbers[i] - numbers[i + 1]) < threshold:\n            return True\n    return False",
+      "request_prompt": "from typing import List\n\n\ndef has_close_elements(numbers: List[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\n    True\n    \"\"\"\n"
+    },
+    {
+      "kind": "verify",
+      "ts": 1791495612.24,
+      "passed": true,
+      "error": ""
+    },
+    {
+      "kind": "accept",
+      "ts": 1791495612.24,
+      "loops": 0,
+      "tokens": 56
+    }
+  ]
+}

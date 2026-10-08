@@ -1,0 +1,27 @@
+{
+  "task_id": "HumanEval/1",
+  "task_type": "code",
+  "prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
+  "meta": {},
+  "steps": [
+    {
+      "kind": "generate",
+      "ts": 1791495623.416,
+      "tokens": 100,
+      "best_text": "def separate_paren_groups(paren_string: str) -> list[str]:\n    result = []\n    current_group = ''\n    depth = 0\n    for char in paren_string:\n        if char == '(':\n            depth += 1\n            current_group += char\n        elif char == ')':\n            depth -= 1\n            current_group += char\n            if depth == 0:\n                result.append(current_group)\n                current_group = ''\n        else:\n            continue\n    return result",
+      "request_prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n"
+    },
+    {
+      "kind": "verify",
+      "ts": 1791495623.454,
+      "passed": true,
+      "error": ""
+    },
+    {
+      "kind": "accept",
+      "ts": 1791495623.454,
+      "loops": 0,
+      "tokens": 100
+    }
+  ]
+}

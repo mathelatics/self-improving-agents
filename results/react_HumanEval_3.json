@@ -1,0 +1,27 @@
+{
+  "task_id": "HumanEval/3",
+  "task_type": "code",
+  "prompt": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n",
+  "meta": {},
+  "steps": [
+    {
+      "kind": "generate",
+      "ts": 1791495638.006,
+      "tokens": 44,
+      "best_text": "def below_zero(operations: List[int]) -> bool:\n    balance = 0\n    for operation in operations:\n        balance += operation\n        if balance < 0:\n            return True\n    return False",
+      "request_prompt": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n"
+    },
+    {
+      "kind": "verify",
+      "ts": 1791495638.044,
+      "passed": true,
+      "error": ""
+    },
+    {
+      "kind": "accept",
+      "ts": 1791495638.044,
+      "loops": 0,
+      "tokens": 44
+    }
+  ]
+}

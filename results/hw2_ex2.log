@@ -1,0 +1,26 @@
+nohup: ignoring input
+OpenBLAS WARNING - could not determine the L2 cache size on this system, assuming 256k
+[1/12] HumanEval/0 single=True react=True loops=0 tok(s/r)=56/56
+[2/12] HumanEval/1 single=True react=True loops=0 tok(s/r)=95/100
+[3/12] HumanEval/2 single=True react=True loops=0 tok(s/r)=18/18
+[4/12] HumanEval/3 single=True react=True loops=0 tok(s/r)=44/44
+[5/12] HumanEval/4 single=True react=True loops=0 tok(s/r)=41/41
+[6/12] HumanEval/5 single=True react=True loops=0 tok(s/r)=43/45
+[7/12] HumanEval/6 single=True react=True loops=0 tok(s/r)=99/108
+[8/12] HumanEval/7 single=True react=True loops=0 tok(s/r)=32/32
+[9/12] HumanEval/8 single=True react=True loops=0 tok(s/r)=54/54
+[10/12] HumanEval/9 single=True react=True loops=1 tok(s/r)=57/178
+[11/12] HumanEval/10 single=False react=False loops=3 tok(s/r)=115/862
+[12/12] HumanEval/11 single=True react=True loops=1 tok(s/r)=40/291
+chart -> results/hw2_ex2_chart.png
+{
+ "n": 12,
+ "seconds": 132.5,
+ "single_shot_pass_rate": 0.917,
+ "react_pass_rate": 0.917,
+ "delta": 0.0,
+ "tasks_fixed_by_react": 0,
+ "mean_loops_on_failures": 5.0,
+ "total_tokens_single": 694,
+ "total_tokens_react": 1829
+}

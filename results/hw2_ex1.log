@@ -1,0 +1,32 @@
+nohup: ignoring input
+OpenBLAS WARNING - could not determine the L2 cache size on this system, assuming 256k
+[1/20] gsm8k-1309 plain=False filter=False bt=False tok=912 bt_n=2
+[2/20] gsm8k-228 plain=True filter=True bt=True tok=892 bt_n=2
+[3/20] gsm8k-51 plain=True filter=True bt=True tok=810 bt_n=2
+[4/20] gsm8k-563 plain=True filter=True bt=False tok=1279 bt_n=2
+[5/20] gsm8k-501 plain=True filter=True bt=False tok=853 bt_n=2
+[6/20] gsm8k-457 plain=True filter=True bt=True tok=345 bt_n=0
+[7/20] gsm8k-285 plain=True filter=True bt=True tok=335 bt_n=0
+[8/20] gsm8k-209 plain=True filter=True bt=True tok=1007 bt_n=2
+[9/20] gsm8k-1116 plain=True filter=True bt=True tok=571 bt_n=2
+[10/20] gsm8k-178 plain=True filter=True bt=True tok=539 bt_n=1
+[11/20] gsm8k-1209 plain=True filter=True bt=True tok=883 bt_n=1
+[12/20] gsm8k-864 plain=True filter=True bt=True tok=723 bt_n=2
+[13/20] gsm8k-65 plain=True filter=True bt=True tok=669 bt_n=1
+[14/20] gsm8k-61 plain=True filter=True bt=True tok=779 bt_n=2
+[15/20] gsm8k-191 plain=True filter=True bt=False tok=459 bt_n=2
+[16/20] gsm8k-447 plain=True filter=True bt=True tok=311 bt_n=0
+[17/20] gsm8k-476 plain=True filter=True bt=True tok=505 bt_n=2
+[18/20] gsm8k-1034 plain=True filter=True bt=True tok=436 bt_n=0
+[19/20] gsm8k-1232 plain=True filter=True bt=False tok=850 bt_n=1
+[20/20] gsm8k-54 plain=True filter=True bt=True tok=448 bt_n=0
+chart -> results/hw2_ex1_chart.png
+{
+ "n": 20,
+ "seconds": 588.4,
+ "accuracy_plain": 0.95,
+ "accuracy_prm_filter": 0.95,
+ "accuracy_prm_backtrack": 0.75,
+ "mean_tokens": 680.3,
+ "total_backtracks": 26
+}
