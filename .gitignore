@@ -1,7 +1,5 @@
-# Python compiled files
-__pycache__/
-*.pyc
+# Logs
+*.log
 
-# Environment and secrets
-.env
-.env.local
+# Results/Output directory (contains generated logs and data)
+results/

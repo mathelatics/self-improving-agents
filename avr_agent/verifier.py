@@ -81,7 +81,7 @@ class CodeVerifierAdapter(Verifier):
             body = Generator.strip_fences(candidate.text)
             candidate.meta["code"] = body
         script = (task["prompt"].rstrip() + "\n" + body + "\n\n" +
-                  task["test"] + f"\ncheck('{task['entry_point']}')\n")
+                  task["test"] + f"\ncheck({task['entry_point']})\n")
         res = self.sandbox.verify("", script)
         candidate.answer = body[:80]
         return {"passed": res["passed"], "answer": None, "error": res["error"]}
