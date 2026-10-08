@@ -1,5 +1,3 @@
-# Logs
-*.log
-
-# Results/Output directory (contains generated logs and data)
-results/
+# Python bytecode and cache
+__pycache__/
+*.pyc

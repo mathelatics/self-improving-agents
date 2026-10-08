@@ -1,0 +1,11 @@
+nohup: ignoring input
+OpenBLAS WARNING - could not determine the L2 cache size on this system, assuming 256k
+hpq-5238 react  em=True pred='Lionel Hollins' gold="['Lionel Hollins']"
+hpq-5238 lats   em=True pred='Lionel Hollins' gold="['Lionel Hollins']"
+hpq-912  react  em=True pred='The Paleo-Indians' gold="['Paleo-Indians']"
+hpq-912  lats   em=True pred='the Paleo-Indians' gold="['Paleo-Indians']"
+hpq-204  react  em=True pred='25 laps' gold="['25 laps']"
+hpq-204  lats   em=False pred='<25>' gold="['25 laps']"
+hpq-2253 react  em=True pred='1958' gold="['1958']"
+hpq-2253 lats   em=True pred='1958' gold="['1958']"
+hpq-2006 react  em=True pred='Loretta Lynn' gold="['Loretta Lynn']"

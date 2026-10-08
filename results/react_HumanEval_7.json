@@ -1,0 +1,27 @@
+{
+  "task_id": "HumanEval/7",
+  "task_type": "code",
+  "prompt": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n",
+  "meta": {},
+  "steps": [
+    {
+      "kind": "generate",
+      "ts": 1791495666.722,
+      "tokens": 32,
+      "best_text": "def filter_by_substring(strings: list[str], substring: str) -> list[str]:\n    return [s for s in strings if substring in s]",
+      "request_prompt": "from typing import List\n\n\ndef filter_by_substring(strings: List[str], substring: str) -> List[str]:\n    \"\"\" Filter an input list of strings only for ones that contain given substring\n    >>> filter_by_substring([], 'a')\n    []\n    >>> filter_by_substring(['abc', 'bacd', 'cde', 'array'], 'a')\n    ['abc', 'bacd', 'array']\n    \"\"\"\n"
+    },
+    {
+      "kind": "verify",
+      "ts": 1791495666.758,
+      "passed": true,
+      "error": ""
+    },
+    {
+      "kind": "accept",
+      "ts": 1791495666.758,
+      "loops": 0,
+      "tokens": 32
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "task_id": "HumanEval/5",
+  "task_type": "code",
+  "prompt": "from typing import List\n\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n",
+  "meta": {},
+  "steps": [
+    {
+      "kind": "generate",
+      "ts": 1791495642.783,
+      "tokens": 45,
+      "best_text": "def intersperse(numbers: list[int], delimeter: int) -> list[int]:\n    result = []\n    for num in numbers:\n        result.append(num)\n        result.append(delimeter)\n    return result[:-1]",
+      "request_prompt": "from typing import List\n\n\ndef intersperse(numbers: List[int], delimeter: int) -> List[int]:\n    \"\"\" Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n    >>> intersperse([], 4)\n    []\n    >>> intersperse([1, 2, 3], 4)\n    [1, 4, 2, 4, 3]\n    \"\"\"\n"
+    },
+    {
+      "kind": "verify",
+      "ts": 1791495642.824,
+      "passed": true,
+      "error": ""
+    },
+    {
+      "kind": "accept",
+      "ts": 1791495642.824,
+      "loops": 0,
+      "tokens": 45
+    }
+  ]
+}

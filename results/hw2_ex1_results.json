@@ -1,0 +1,577 @@
+{
+ "summary": {
+  "n": 20,
+  "seconds": 588.4,
+  "accuracy_plain": 0.95,
+  "accuracy_prm_filter": 0.95,
+  "accuracy_prm_backtrack": 0.75,
+  "mean_tokens": 680.3,
+  "total_backtracks": 26
+ },
+ "per_problem": [
+  {
+   "id": "gsm8k-1309",
+   "tokens": 912,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": false,
+   "prm_filter": false,
+   "prm_backtrack": false,
+   "flagged_steps": [
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 2480, 700, 750",
+     "text": "1. Alexandra raises $430.\n2. Kim raises $320 more than Alexandra, so Kim raises 430 + 320 = $750.\n3. Sarah raises $300.\n4. Maryam raises $400 more than Sarah, s"
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 1000, 1430, 2180, 700",
+     "text": "1. Sarah raises $300.\n2. Maryam raises $400 more than Sarah, so Maryam raises $300 + $400 = $700.\n3. Alexandra raises $430.\n4. Kim raises $320 more than Alexand"
+    },
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 750",
+     "text": "Kim raises $320 more than Alexandra, so Kim raises 430 + 320 = $750."
+    },
+    {
+     "index": 4,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 700",
+     "text": "Maryam raises 300 + 400 = $700."
+    },
+    {
+     "index": 5,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 1180, 1480, 2180",
+     "text": "Now, we add up the total amount of money raised by all four girls: \n430 + 750 = $1180\n1180 + 300 = $1480\n1480 + 700 = $2180"
+    }
+   ],
+   "gold": "2280"
+  },
+  {
+   "id": "gsm8k-228",
+   "tokens": 892,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 3,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 60",
+     "text": "4. Since there are 360 pieces in the puzzle, we divide the total number of pieces by their combined rate to find the total minutes it will take to complete the "
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 60",
+     "text": "1. Kalinda can place 4 pieces per minute.\n2. Her mom can place half as many pieces as Kalinda, so her mom can place 4 / 2 = 2 pieces per minute.\n3. Combined, th"
+    }
+   ],
+   "gold": "1"
+  },
+  {
+   "id": "gsm8k-51",
+   "tokens": 810,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 30",
+     "text": "1. Tom sails from 1 to 4 PM, which is a total of 3 hours.\n2. Speed of the ship = 10 miles per hour\n3. Distance traveled by Tom = speed x time = 10 x 3 = 30 mile"
+    }
+   ],
+   "gold": "5"
+  },
+  {
+   "id": "gsm8k-563",
+   "tokens": 1279,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": false,
+   "flagged_steps": [
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 20",
+     "text": "3. Total candles needed = 12 (for the older son) + 8 (for the younger son) = 20 candles."
+    }
+   ],
+   "gold": "12"
+  },
+  {
+   "id": "gsm8k-501",
+   "tokens": 853,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": false,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.25, 91",
+     "text": "1. Calculate the yards used by Mariah: \n1/4 * 364 yards = 0.25 * 364 yards = 91 yards"
+    },
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.5, 182",
+     "text": "2. Calculate the yards used by Mariah's grandma:\n1/2 * 364 yards = 0.5 * 364 yards = 182 yards"
+    },
+    {
+     "index": 3,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 273",
+     "text": "3. Add the yards used by Mariah and her grandma to find the total yards:\n91 yards + 182 yards = 273 yards"
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.25, 0.5, 182, 273",
+     "text": "1. Calculate the yards used by Mariah: 1/4 of 364 yards = 0.25 * 364 yards\n2. Calculate 0.25 * 364 yards = 91 yards\n3. Calculate the yards used by Mariah's gran"
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "invalid arithmetic: 1/4=364 (should be 0.25); 1/2=364 (should be 0.5)",
+     "text": "1. First, we find out how many yards 1/4 of a skein is: 364 yards/skein * 1/4 = 364 * 0.25 = 91 yards\n2. Next, we find out how many yards 1/2 of a skein is: 364"
+    }
+   ],
+   "gold": "273"
+  },
+  {
+   "id": "gsm8k-457",
+   "tokens": 345,
+   "calls": 3,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.5",
+     "text": "1. Katelyn saw 50 fairies initially.\n2. Half as many fairies as Katelyn saw (25) came from the east and joined the fairies that were there. \n   50 * 0.5 = 25\n3."
+    }
+   ],
+   "gold": "45"
+  },
+  {
+   "id": "gsm8k-285",
+   "tokens": 335,
+   "calls": 3,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 18",
+     "text": "1. Find Ann's brother's current age: \n   Ann's brother's age = 2 * Ann's age\n   Ann's brother's age = 2 * 9\n   Ann's brother's age = 18"
+    },
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 21",
+     "text": "2. Calculate the brother's age in 3 years:\n   Brother's age in 3 years = Brother's current age + 3\n   Brother's age in 3 years = 18 + 3\n   Brother's age in 3 ye"
+    }
+   ],
+   "gold": "21"
+  },
+  {
+   "id": "gsm8k-209",
+   "tokens": 1007,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 11, 12, 145, 20",
+     "text": "1. Total cost of half a dozen plates = 6 plates * $6000 per plate\n2. Total cost of half a dozen plates = 6 * $6000\n3. Total cost of half a dozen plates = $36000"
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 36000",
+     "text": "1. Half a dozen plates cost $6000 each. \n   Half a dozen is 6, so 6 * 6000 = $36,000"
+    },
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 34800",
+     "text": "2. Twenty dozen cups cost $1200 less than the total cost of half a dozen plates.\n   So, the total cost of twenty dozen cups is $36,000 - $1200 = $34,800"
+    },
+    {
+     "index": 3,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 240",
+     "text": "3. To find the cost of one cup, we need to divide the total cost by the number of cups.\n   Twenty dozen is 240 cups, so the cost of one cup is $34,800 / 240"
+    },
+    {
+     "index": 4,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 145",
+     "text": "4. Calculate the cost of one cup.\n   $34,800 / 240 = $145"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 12, 20",
+     "text": "1. The cost of half a dozen plates is 6 * 6000 = 36000 dollars.\n2. Twenty dozen cups cost $1200 less than 36000 dollars, so the cost of twenty dozen cups is 360"
+    }
+   ],
+   "gold": "145"
+  },
+  {
+   "id": "gsm8k-1116",
+   "tokens": 571,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.20",
+     "text": "1. 20% of 50 is 0.20 * 50 = 10\n2. The increase in enrollment is 10 students.\n3. To find the total number of students this year, add the increase to the original"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.20",
+     "text": "1. Identify the original number of students: 50\n2. Calculate the increase in enrollment: 20% of 50 = 0.20 * 50 = 10\n3. Add the increase to the original number o"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.20",
+     "text": "To find the increase in enrollment, we need to calculate 20% of 50 students.\n20% of 50 = 0.20 * 50 = 10 students"
+    }
+   ],
+   "gold": "60"
+  },
+  {
+   "id": "gsm8k-178",
+   "tokens": 539,
+   "calls": 4,
+   "backtracks": 1,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "invalid arithmetic: 36+46=122 (should be 82)",
+     "text": "1. Bo has 40 crabs.\n2. Monic has 4 fewer crabs than Bo, so Monic has 40 - 4 = 36 crabs.\n3. Rani has ten more crabs than Monic, so Rani has 36 + 10 = 46 crabs.\n4"
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "invalid arithmetic: 36+46=122 (should be 82)",
+     "text": "1. Bo has 40 crabs.\n2. Monic has 4 fewer crabs than Bo, so Monic has 40 - 4 = 36 crabs.\n3. Rani has 10 more crabs than Monic, so Rani has 36 + 10 = 46 crabs.\n4."
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 122",
+     "text": "1. Bo has 40 crabs.\n2. Monic has 4 fewer crabs than Bo, so Monic has 40 - 4 = 36 crabs.\n3. Rani has 10 more crabs than Monic, so Rani has 36 + 10 = 46 crabs.\n4."
+    }
+   ],
+   "gold": "122"
+  },
+  {
+   "id": "gsm8k-1209",
+   "tokens": 883,
+   "calls": 4,
+   "backtracks": 1,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "invalid arithmetic: 6+20=29 (should be 26)",
+     "text": "1. The low setting removes 1 liter of water per day. \n2. The medium setting removes twice as much water per day as the low setting, so it removes 2 * 1 = 2 lite"
+    },
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 20",
+     "text": "Now, we calculate the total water removed per setting:\n- Low setting: 1 liter/day * 3 days = 3 liters\n- Medium setting: 2 liters/day * 3 days = 6 liters\n- High "
+    },
+    {
+     "index": 3,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 29",
+     "text": "Now, we add up the total water removed:\n3 liters (low) + 6 liters (medium) + 20 liters (high) = 29 liters"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "invalid arithmetic: 6+20=29 (should be 26)",
+     "text": "1. The low setting removes 1 liter of water per day. \n2. The medium setting removes twice as much water per day as the low setting, so it removes 2 * 1 = 2 lite"
+    }
+   ],
+   "gold": "29"
+  },
+  {
+   "id": "gsm8k-864",
+   "tokens": 723,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 500",
+     "text": "1. Calculate the total number of burritos given to the students: \n50 students * 10 burritos/student = 500 burritos"
+    },
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 520",
+     "text": "2. Add the number of burritos Mr. George ate:\n500 burritos + 20 burritos = 520 burritos"
+    },
+    {
+     "index": 3,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 80",
+     "text": "3. Subtract the total number of burritos eaten from the initial order:\n600 burritos - 520 burritos = 80 burritos"
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 500",
+     "text": "1. First, let's calculate the total number of burritos given to students: \n   50 students * 10 burritos/student = 500 burritos"
+    },
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 520",
+     "text": "2. Next, let's add the burritos Mr. George ate to the total number of burritos given to students:\n   500 burritos + 20 burritos = 520 burritos"
+    },
+    {
+     "index": 3,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 80",
+     "text": "3. Now, we need to subtract the total number of burritos eaten from the initial order to find the leftover burritos:\n   600 burritos - 520 burritos = 80 burrito"
+    }
+   ],
+   "gold": "80"
+  },
+  {
+   "id": "gsm8k-65",
+   "tokens": 669,
+   "calls": 4,
+   "backtracks": 1,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 36",
+     "text": "3. Now, we need to find out how many hours Jim spends in 4 weeks.\n   Total weeks = 4\n   Total time spent in 4 weeks = 9 hours * 4 = 36 hours"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 12",
+     "text": "1. Jim spends 2 hours watching TV.\n2. Then he reads for half as long, which is 2 / 2 = 1 hour.\n3. He does this 3 times a week, so total hours per week for TV an"
+    }
+   ],
+   "gold": "36"
+  },
+  {
+   "id": "gsm8k-61",
+   "tokens": 779,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.10, 130, 1300, 1430",
+     "text": "1. Material cost: $500\n2. Construction cost: $800\n3. Total cost so far: $500 + $800 = $1300\n4. Insurance cost is 10% of the total cost so far: 10% of $1300 = 0."
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 1300",
+     "text": "1. Janet pays $500 for the material.\n2. She then pays $800 for the jeweler to construct it. \n   $500 (material) + $800 (jeweler) = $1300"
+    },
+    {
+     "index": 2,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.1, 130, 1430",
+     "text": "3. Next, she pays 10% of $1300 to get it insured. \n   10% of $1300 = 0.1 * $1300 = $130\n4. Now, we add the insurance cost to the previous total.\n   $1300 (mater"
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 0.10, 130, 1300, 1430",
+     "text": "1. Cost of material: $500\n2. Cost of construction: $800\n3. Total cost so far: $500 + $800 = $1,300\n4. Insurance cost (10% of $1,300): 0.10 * $1,300 = $130\n5. To"
+    }
+   ],
+   "gold": "1430"
+  },
+  {
+   "id": "gsm8k-191",
+   "tokens": 459,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": false,
+   "flagged_steps": [
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 35",
+     "text": "To find the total pounds of insects needed per week, we multiply the pounds needed per duck by the number of ducks:\n3.5 pounds/duck * 10 ducks = 35 pounds/week"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 35",
+     "text": "1. First, we need to find out how many pounds of insects the flock of ducks needs per week: \n10 ducks * 3.5 pounds per duck = 35 pounds per week"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 35",
+     "text": "To find the total pounds of insects needed per week, multiply the pounds needed per duck by the number of ducks:\n3.5 pounds/duck * 10 ducks = 35 pounds/week"
+    }
+   ],
+   "gold": "5"
+  },
+  {
+   "id": "gsm8k-447",
+   "tokens": 311,
+   "calls": 3,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [],
+   "gold": "5"
+  },
+  {
+   "id": "gsm8k-476",
+   "tokens": 505,
+   "calls": 5,
+   "backtracks": 2,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 20",
+     "text": "$300 / $15 = 20 books"
+    },
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 20",
+     "text": "1. Divide the total amount spent ($300) by the cost per book ($15) to find the total number of books purchased.\n   $300 / $15 = 20 books"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 20",
+     "text": "To find out how many books Sarah bought, we need to divide the total amount spent by the cost of each book.\nTotal amount spent: $300\nCost of each book: $15\nTota"
+    }
+   ],
+   "gold": "5"
+  },
+  {
+   "id": "gsm8k-1034",
+   "tokens": 436,
+   "calls": 3,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 18, 48",
+     "text": "1. Cost of 3 books at 16 dollars each: 3 x 16 = 48 dollars\n2. Cost of 3 pencils at 6 dollars each: 3 x 6 = 18 dollars\n3. Total cost of books and pencils: 48 + 1"
+    }
+   ],
+   "gold": "66"
+  },
+  {
+   "id": "gsm8k-1232",
+   "tokens": 850,
+   "calls": 4,
+   "backtracks": 1,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": false,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "numbers not carried forward: 15",
+     "text": "Therefore, 5 + x = 20.\n6. To find the value of x, we subtract 5 from both sides of the equation, which gives us x = 20 - 5.\n7. Calculating the value of x, we ge"
+    },
+    {
+     "index": 0,
+     "score": -1.0,
+     "reason": "invalid arithmetic: 3/4=60 (should be 0.75)",
+     "text": "1. Eve originally had 20 pieces of pomelos.\n2. 1/4 of 20 is 20 / 4 = 5.\n3. Eve is left with 1/4 of the pomelos she originally had, so she gave away the remainin"
+    }
+   ],
+   "gold": "15"
+  },
+  {
+   "id": "gsm8k-54",
+   "tokens": 448,
+   "calls": 3,
+   "plain": true,
+   "prm_filter": true,
+   "prm_backtrack": true,
+   "flagged_steps": [
+    {
+     "index": 1,
+     "score": -1.0,
+     "reason": "invalid arithmetic: 21+12=40 (should be 33)",
+     "text": "1. The Doubtfire sisters already have 7 kittens from the local animal shelter.\n2. The number of kittens Patchy has is 3 times the number of adopted kittens (7)."
+    }
+   ],
+   "gold": "40"
+  }
+ ]
+}
